@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listings - Leather Marketplace</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        /* Navbar */
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+        }
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Listings Section */
+        .listings-container {
+            width: 80%;
+            margin: 20px auto;
+            text-align: center;
+        }
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .product-card {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            width: 250px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .product-card img {
+            width: 100%;
+            border-radius: 5px;
+        }
+        .btn {
+            background: #654321;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background: #543210;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+  
+    <header>
+        <nav>
+            <h1>Leather Marketplace</h1>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="listings.html">Listings</a></li>
+                <li><a href="post-ad.html">Sell</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="listings-container">
+        <h2>Available Leather Products</h2>
+        <div class="product-grid" id="productGrid">
+           
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Leather Marketplace</p>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const products = [
+                { name: "Premium Leather", price: "₹2,500", img: "assets/images/leather1.jpg", link: "details.html" },
+                { name: "Genuine Leather Bag", price: "₹5,000", img: "assets/images/leather2.jpg", link: "details.html" },
+                { name: "Leather Wallet", price: "₹1,200", img: "assets/images/leather3.jpg", link: "details.html" },
+                { name: "Leather Shoes", price: "₹3,500", img: "assets/images/leather4.jpg", link: "details.html" }
+            ];
+
+            let productGrid = document.getElementById("productGrid");
+
+            products.forEach(product => {
+                let productCard = document.createElement("div");
+                productCard.classList.add("product-card");
+                productCard.innerHTML = `
+                    <img src="${product.img}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>Price: ${product.price}</p>
+                    <a href="${product.link}" class="btn">View Details</a>
+                `;
+                productGrid.appendChild(productCard);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Post an Ad - Leather Marketplace</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f8f8;
+    }
+
+    nav {
+      background-color: #333;
+      color: white;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+    }
+
+    .post-ad-container {
+      width: 50%;
+      margin: 30px auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .post-ad-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .form-group input[type="file"] {
+      padding: 5px;
+    }
+
+    .btn {
+      background: #654321;
+      color: white;
+      padding: 10px 15px;
+      text-decoration: none;
+      border-radius: 5px;
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn:hover {
+      background: #543210;
+    }
+
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      margin-top: 20px;
+    }
+
+    /* Custom alert box styles */
+    .custom-alert {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #fff7e6;
+      border: 2px solid #d4a017;
+      padding: 20px 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      text-align: center;
+      z-index: 1000;
+      font-size: 18px;
+      display: none;
+    }
+
+    .custom-alert button {
+      margin-top: 15px;
+      background: #d4a017;
+      border: none;
+      padding: 8px 20px;
+      color: white;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .custom-alert button:hover {
+      background: #b8860b;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <h1>Leather Marketplace</h1>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="listings.php">Listings</a></li>
+        <li><a href="post-ad.html">Sell</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="post-ad-container">
+    <h2>Post Your Leather Product</h2>
+    <form id="adForm" action="post-ad.php" method="POST" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="productName">Product Name:</label>
+        <input type="text" id="productName" name="productName" />
+      </div>
+
+      <div class="form-group">
+        <label for="price">Price (₹):</label>
+        <input type="number" id="price" name="price" />
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="image">Upload Product Image:</label>
+        <input type="file" id="image" name="image" accept="image/*" />
+      </div>
+
+      <button type="submit" class="btn">Post Ad</button>
+    </form>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Leather Marketplace</p>
+  </footer>
+
+  <div class="custom-alert" id="customAlert">
+    <span id="alertMessage"></span><br />
+    <button onclick="closeAlert()">OK</button>
+  </div>
+
+  <script>
+    const form = document.getElementById('adForm');
+    const customAlert = document.getElementById('customAlert');
+    const alertMessage = document.getElementById('alertMessage');
+
+    function showAlert(message) {
+      alertMessage.innerText = message;
+      customAlert.style.display = 'block';
+    }
+
+    function closeAlert() {
+      customAlert.style.display = 'none';
+    }
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('productName').value.trim();
+      const price = document.getElementById('price').value.trim();
+      const desc = document.getElementById('description').value.trim();
+      const image = document.getElementById('image').files.length;
+
+      if (!name) {
+        alert("Please enter a product name.");
+        return;
+      }
+
+      if (!price || isNaN(price) || price <= 0) {
+        alert("Please enter a valid price.");
+        return;
+      }
+
+      if (!desc) {
+        alert("Please enter a product description.");
+        return;
+      }
+
+      if (image === 0) {
+        alert("Please upload a product image.");
+        return;
+      }
+
+      form.submit();
+    });
+  </script>
+
+</body>
+</html>

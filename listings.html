@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Leather Listings - Leather Marketplace</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      background: #333;
+      color: white;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      margin-left: 15px;
+    }
+    .header-title {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .container {
+      padding: 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .card-body {
+      padding: 15px;
+      flex-grow: 1;
+    }
+    .card h3 {
+      margin: 0 0 10px;
+    }
+    .card p {
+      color: #555;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    .btns {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 15px 15px;
+    }
+    .btn {
+      text-decoration: none;
+      background: #654321;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    .btn:hover {
+      background: #543210;
+    }
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="header-title">Leather Marketplace</div>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="listings.html">Listings</a>
+    <a href="post-ad.html">Sell</a>
+    <a href="login.html">Login</a>
+  </div>
+</nav>
+
+<div class="container">
+  <h2>Featured Leather Products</h2>
+  <div class="grid">
+    <div class="card">
+      <img src="assets/sample1.jpg" alt="Vintage Leather Bag">
+      <div class="card-body">
+        <h3>Vintage Leather Bag</h3>
+        <p><strong>₹2,999</strong></p>
+        <p>Classic vintage leather bag for all occasions.</p>
+      </div>
+      <div class="btns">
+        <a href="details.php?id=1" class="btn">View</a>
+        <a href="payment.html" class="btn">Buy Now</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="assets/sample2.jpg" alt="Leather Wallet">
+      <div class="card-body">
+        <h3>Genuine Leather Wallet</h3>
+        <p><strong>₹1,299</strong></p>
+        <p>Durable leather wallet with multiple compartments.</p>
+      </div>
+      <div class="btns">
+        <a href="details.php?id=2" class="btn">View</a>
+        <a href="payment.php" class="btn">Buy Now</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="assets/sample3.jpg" alt="Leather Shoes">
+      <div class="card-body">
+        <h3>Premium Leather Shoes</h3>
+        <p><strong>₹4,499</strong></p>
+        <p>Elegant formal leather shoes for men.</p>
+      </div>
+      <div class="btns">
+        <a href="details.php?id=3" class="btn">View</a>
+        <a href="payment.html" class="btn">Buy Now</a>
+      </div>
+    </div>
+
+    <!-- Add more cards here if needed -->
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2025 Leather Marketplace</p>
+</footer>
+
+</body>
+</html>
