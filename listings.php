@@ -176,10 +176,10 @@ if (!$result) {
 <nav>
   <a href="index.html" class="logo">Leather Marketplace</a>
   <div class="nav-links">
-    <a href="index.html">Home</a>
+    <a href="home.html">Home</a>
     <a href="listings.php">Listings</a>
     <a href="post-ad.html">Sell</a>
-    <a href="login.html">Login</a>
+    <a href="logout.php">Logout</a>
   </div>
 </nav>
 

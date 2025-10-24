@@ -4,47 +4,96 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Secure Payment - Leather Marketplace</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Poppins', sans-serif;
       margin: 0;
-      background: #f5f5f5;
+      padding: 0;
+      background-color: #f8f8f8;
     }
 
-    .container {
+    /* Navbar */
+    nav {
+      background-color: #654321;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    nav .logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      font-size: 22px;
+      color: white;
+      text-decoration: none;
+    }
+
+    nav .nav-links {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    nav .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav .nav-links a:hover {
+      color: #ffba73;
+    }
+
+    /* Payment Container */
+    .payment-container {
       max-width: 500px;
-      background: white;
-      margin: 50px auto;
+      margin: 60px auto;
+      background: rgba(255, 248, 245, 0.95);
       padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      border-left: 5px solid #654321;
     }
 
-    h2 {
+    .payment-container h2 {
       text-align: center;
-      margin-bottom: 20px;
-      color: #4b2e10;
+      font-family: 'Playfair Display', serif;
+      color: #654321;
+      margin-bottom: 25px;
+      font-weight: 600;
     }
 
     .form-group {
-      margin-bottom: 15px;
+      margin-bottom: 18px;
+      position: relative;
     }
 
     .form-group label {
-      font-weight: bold;
+      font-weight: 500;
       display: block;
       margin-bottom: 5px;
+      color: #574144;
     }
 
     .form-group input {
       width: 100%;
-      padding: 10px;
-      border-radius: 6px;
+      padding: 12px 15px;
       border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+      transition: border 0.3s, box-shadow 0.3s;
     }
 
-    .form-group input[type="radio"] {
-      width: auto;
+    .form-group input:focus {
+      border-color: #654321;
+      outline: none;
+      box-shadow: 0 0 8px rgba(101, 67, 33, 0.4);
     }
 
     .method-options {
@@ -53,143 +102,173 @@
       margin-top: 10px;
     }
 
-    .btn {
-      width: 100%;
-      padding: 12px;
-      background-color: #4b2e10;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-size: 16px;
-      cursor: pointer;
+    .error-message {
+      color: #c0392b;
+      font-size: 13px;
+      margin-top: 4px;
+      display: none;
     }
 
-    .btn:hover {
-      background-color: #3d240c;
+    .btn-pay {
+      background: #654321;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn-pay:hover {
+      background-color: #875c3a;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #654321;
+      color: white;
+      text-align: center;
+      padding: 25px 20px;
+      font-size: 14px;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 500px){
+      .payment-container {
+        margin: 40px 20px;
+        padding: 20px;
+      }
     }
   </style>
 </head>
 <body>
 
-<div class="container">
-  <h2>Complete Your Payment</h2>
-  <form id="paymentForm" action="payment.php" method="POST">
-    <div class="form-group">
-      <label>Payment Method:</label>
-      <div class="method-options">
-        <label><input type="radio" name="method" value="card" checked> Card</label>
-        <label><input type="radio" name="method" value="upi"> UPI</label>
-      </div>
+  <!-- Navbar -->
+  <nav>
+    <a href="index.html" class="logo">Leather Marketplace</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="listings.html">Listings</a>
+      <a href="post-ad.html">Sell</a>
+      <a href="login.html">Login</a>
     </div>
+  </nav>
 
-    <div id="cardDetails">
+  <!-- Payment Form -->
+  <div class="payment-container">
+    <h2>Complete Your Payment</h2>
+    <form id="paymentForm" action="payment.php" method="POST" novalidate>
       <div class="form-group">
-        <label>Cardholder Name:</label>
-        <input type="text" name="cardname" id="cardname">
+        <label>Payment Method:</label>
+        <div class="method-options">
+          <label><input type="radio" name="method" value="card" checked> Card</label>
+          <label><input type="radio" name="method" value="upi"> UPI</label>
+        </div>
       </div>
 
-      <div class="form-group">
-        <label>Card Number:</label>
-        <input type="text" name="cardnumber" id="cardnumber" maxlength="4">
+      <div id="cardDetails">
+        <div class="form-group">
+          <label>Cardholder Name:</label>
+          <input type="text" name="cardname" id="cardname">
+          <small class="error-message">Please enter the cardholder's name.</small>
+        </div>
+
+        <div class="form-group">
+          <label>Card Number:</label>
+          <input type="text" name="cardnumber" id="cardnumber" maxlength="4">
+          <small class="error-message">Card number must be exactly 4 digits.</small>
+        </div>
+
+        <div class="form-group">
+          <label>Expiry Date:</label>
+          <input type="month" name="expiry" id="expiry">
+          <small class="error-message">Please select the expiry date.</small>
+        </div>
+
+        <div class="form-group">
+          <label>CVV:</label>
+          <input type="password" name="cvv" id="cvv" maxlength="3">
+          <small class="error-message">CVV must be exactly 3 digits.</small>
+        </div>
       </div>
 
-      <div class="form-group">
-        <label>Expiry Date:</label>
-        <input type="month" name="expiry" id="expiry">
+      <div id="upiDetails" style="display: none;">
+        <div class="form-group">
+          <label>UPI ID:</label>
+          <input type="text" name="upiid" id="upiid" placeholder="example@upi">
+          <small class="error-message">Please enter a valid UPI ID (e.g., yourname@upi).</small>
+        </div>
       </div>
 
-      <div class="form-group">
-        <label>CVV:</label>
-        <input type="password" name="cvv" id="cvv" maxlength="3">
-      </div>
-    </div>
+      <button type="submit" class="btn-pay">Pay Now</button>
+    </form>
+  </div>
 
-    <div id="upiDetails" style="display: none;">
-      <div class="form-group">
-        <label>UPI ID:</label>
-        <input type="text" name="upiid" id="upiid" placeholder="example@upi">
-      </div>
-    </div>
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 Leather Marketplace
+  </footer>
 
-    <button type="submit" class="btn">Pay Now</button>
-  </form>
-</div>
+  <script>
+    const methodRadios = document.querySelectorAll('input[name="method"]');
+    const cardDetails = document.getElementById('cardDetails');
+    const upiDetails = document.getElementById('upiDetails');
 
-<script>
-  const methodRadios = document.querySelectorAll('input[name="method"]');
-  const cardDetails = document.getElementById('cardDetails');
-  const upiDetails = document.getElementById('upiDetails');
-
-  const cardInputs = cardDetails.querySelectorAll('input');
-  const upiInputs = upiDetails.querySelectorAll('input');
-
-  function togglePaymentFields(method) {
-    if (method === 'card') {
-      cardDetails.style.display = 'block';
-      upiDetails.style.display = 'none';
-    } else {
-      cardDetails.style.display = 'none';
-      upiDetails.style.display = 'block';
-    }
-  }
-
-  methodRadios.forEach(radio => {
-    radio.addEventListener('change', () => togglePaymentFields(radio.value));
-  });
-
-  window.onload = () => {
-    const selected = document.querySelector('input[name="method"]:checked').value;
-    togglePaymentFields(selected);
-  };
-
-  document.getElementById("paymentForm").addEventListener("submit", function(e) {
-    const selectedMethod = document.querySelector('input[name="method"]:checked').value;
-
-    if (selectedMethod === 'card') {
-      const name = document.getElementById("cardname").value.trim();
-      const number = document.getElementById("cardnumber").value.trim();
-      const expiry = document.getElementById("expiry").value.trim();
-      const cvv = document.getElementById("cvv").value.trim();
-
-      if (name === "") {
-        alert("Please enter the cardholder's name.");
-        e.preventDefault();
-        return;
-      }
-
-      if (!/^\d{4}$/.test(number)) {
-        alert("Card number must be exactly 4 digits.");
-        e.preventDefault();
-        return;
-      }
-
-      if (expiry === "") {
-        alert("Please select the expiry date.");
-        e.preventDefault();
-        return;
-      }
-
-      if (!/^\d{3}$/.test(cvv)) {
-        alert("CVV must be exactly 3 digits.");
-        e.preventDefault();
-        return;
-      }
-    } else {
-      const upi = document.getElementById("upiid").value.trim();
-      if (upi === "") {
-        alert("Please enter your UPI ID.");
-        e.preventDefault();
-        return;
-      }
-      const upiPattern = /^[\w.-]+@[\w.-]+$/;
-      if (!upiPattern.test(upi)) {
-        alert("Please enter a valid UPI ID (e.g., yourname@upi).");
-        e.preventDefault();
-        return;
+    function togglePaymentFields(method) {
+      if (method === 'card') {
+        cardDetails.style.display = 'block';
+        upiDetails.style.display = 'none';
+      } else {
+        cardDetails.style.display = 'none';
+        upiDetails.style.display = 'block';
       }
     }
-  });
-</script>
 
+    methodRadios.forEach(radio => {
+      radio.addEventListener('change', () => togglePaymentFields(radio.value));
+    });
+
+    window.onload = () => {
+      const selected = document.querySelector('input[name="method"]:checked').value;
+      togglePaymentFields(selected);
+    };
+
+    const paymentForm = document.getElementById("paymentForm");
+    paymentForm.addEventListener("submit", function(e){
+      let valid = true;
+
+      // Card validation
+      if(document.querySelector('input[name="method"]:checked').value === 'card'){
+        const cardname = document.getElementById("cardname");
+        const cardnumber = document.getElementById("cardnumber");
+        const expiry = document.getElementById("expiry");
+        const cvv = document.getElementById("cvv");
+
+        function showError(input){ input.nextElementSibling.style.display = 'block'; valid=false; }
+        function hideError(input){ input.nextElementSibling.style.display = 'none'; }
+
+        if(cardname.value.trim() === "") showError(cardname); else hideError(cardname);
+        if(!/^\d{4}$/.test(cardnumber.value.trim())) showError(cardnumber); else hideError(cardnumber);
+        if(expiry.value.trim() === "") showError(expiry); else hideError(expiry);
+        if(!/^\d{3}$/.test(cvv.value.trim())) showError(cvv); else hideError(cvv);
+
+      } else {
+        // UPI validation
+        const upiid = document.getElementById("upiid");
+        const upiPattern = /^[\w.-]+@[\w.-]+$/;
+
+        if(upiid.value.trim() === "" || !upiPattern.test(upiid.value.trim())){
+          upiid.nextElementSibling.style.display = 'block';
+          valid = false;
+        } else {
+          upiid.nextElementSibling.style.display = 'none';
+        }
+      }
+
+      if(!valid) e.preventDefault();
+    });
+  </script>
 </body>
 </html>
