@@ -22,32 +22,57 @@ if (!$result) {
 <head>
   <meta charset="UTF-8">
   <title>Leather Listings</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: Arial;
+      font-family: 'Poppins', sans-serif;
       margin: 0;
       padding: 0;
-      background: #f5f5f5;
+      background: #f2f2f2;
     }
 
+    /* Navbar like index.html */
     nav {
-      background: #333;
-      color: white;
-      padding: 15px;
+      background-color: #654321;
+      padding: 12px 20px;
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
     }
 
-    nav a {
+    nav .logo {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      font-size: 22px;
       color: white;
       text-decoration: none;
-      font-weight: bold;
-      margin-left: 15px;
+    }
+
+    nav .nav-links {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    nav .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav .nav-links a:hover {
+      color: #ffba73;
     }
 
     h2 {
       text-align: center;
       margin-top: 30px;
+      font-family: 'Playfair Display', serif;
+      color: #574144;
+      font-weight: 400;
     }
 
     .container {
@@ -61,21 +86,27 @@ if (!$result) {
 
     .card {
       background: white;
-      border-radius: 10px;
-      box-shadow: 0 0 10px #ccc;
+      border-radius: 12px;
       overflow: hidden;
-      transition: 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+      border: 1px solid #ddd;
     }
 
     .card:hover {
-      box-shadow: 0 0 15px #aaa;
-      transform: scale(1.01);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
     }
 
     .card img {
       width: 100%;
       height: 200px;
       object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .card img:hover {
+      transform: scale(1.05);
     }
 
     .card-content {
@@ -83,13 +114,17 @@ if (!$result) {
     }
 
     .card-content h3 {
-      margin: 0;
+      margin: 0 0 10px 0;
+      font-size: 18px;
+      color: #333;
+      font-weight: 600;
     }
 
     .price {
-      color: green;
-      font-weight: bold;
-      margin: 10px 0;
+      color: #28a745;
+      font-weight: 600;
+      margin-bottom: 10px;
+      font-size: 16px;
     }
 
     .btns {
@@ -105,27 +140,42 @@ if (!$result) {
       color: white;
       padding: 8px;
       text-decoration: none;
-      border-radius: 5px;
+      border-radius: 6px;
+      font-size: 14px;
+      transition: background 0.3s;
     }
 
     .btns a:hover {
-      background: #543210;
+      background: #875c3a;
     }
 
+    /* Footer like index.html */
     footer {
-      background: #333;
+      background-color: #654321;
       color: white;
       text-align: center;
-      padding: 10px;
+      padding: 25px 20px;
+      font-size: 14px;
       margin-top: 40px;
+    }
+
+    @media(max-width: 768px){
+      nav {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .btns {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
 <body>
 
+<!-- Navbar -->
 <nav>
-  <div>Leather Marketplace</div>
-  <div>
+  <a href="index.html" class="logo">Leather Marketplace</a>
+  <div class="nav-links">
     <a href="index.html">Home</a>
     <a href="listings.php">Listings</a>
     <a href="post-ad.html">Sell</a>
@@ -152,8 +202,9 @@ if (!$result) {
 </div>
 
 <footer>
-  <p>&copy; 2025 Leather Marketplace</p>
+  &copy; 2025 Leather Marketplace
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
