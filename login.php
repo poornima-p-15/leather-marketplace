@@ -24,8 +24,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             if (password_verify($password, $hashed_password)) {
                 // Correct login
                 $_SESSION["user"] = $first_name;
-                $_SESSION["user_id"] = $id; // optional
-                header("Location: index.php");
+                $_SESSION["user_id"] = $id; 
+                header("Location: home.php");
                 exit();
             } else {
                 // Wrong password
